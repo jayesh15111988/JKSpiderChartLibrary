@@ -1,0 +1,6 @@
+framework module Pods_JKSpiderChartLibrary {
+  umbrella header "Pods-JKSpiderChartLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
