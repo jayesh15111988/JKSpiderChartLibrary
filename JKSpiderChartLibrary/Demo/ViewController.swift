@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BlocksKit
 
 class ViewController: UIViewController, SpiderChartProtocol {
 
@@ -16,7 +15,7 @@ class ViewController: UIViewController, SpiderChartProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spider = SpiderChart(firstOptions: ["200", "100", "148", "107"], secondOptions: ["20", "10", "40", "15","15"], labelTitles: ["l1", "l2", "l3", "l4", "15"])
+        spider = SpiderChart(firstOptions: ["200", "100", "148", "107", "133"], secondOptions: ["20", "10", "40", "15","15"], labelTitles: ["l1", "l2", "l3", "l4", "15"])
         spider?.translatesAutoresizingMaskIntoConstraints = false
         spider?.chartDelegate = self
         self.view.addSubview(spider!)
@@ -29,6 +28,9 @@ class ViewController: UIViewController, SpiderChartProtocol {
         super.viewDidLayoutSubviews()
         spider?.drawSpiderChart()
     }
-
+    
+    func mapLegendSelectedAt(index: Int) {
+        print("Selected \(index)")
+    }
 }
 

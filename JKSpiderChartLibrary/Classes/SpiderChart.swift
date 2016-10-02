@@ -19,10 +19,11 @@ public class SpiderChart: UIView {
     var chartCenter: CGPoint
     var chartMaxRadius: CGFloat
     var graphPadding: CGFloat
+    var animated: Bool
     weak var chartDelegate: SpiderChartProtocol?
 
     
-    public init(firstOptions: [String], secondOptions: [String], labelTitles: [String]) {
+    public init(firstOptions: [String], secondOptions: [String], labelTitles: [String], animated: Bool = false) {
         self.firstOptions = firstOptions
         self.secondOptions = secondOptions
         self.chartLabelTitles = labelTitles
@@ -32,6 +33,7 @@ public class SpiderChart: UIView {
         self.chartCenter = CGPointZero
         self.chartMaxRadius = 0
         self.graphPadding = 44
+        self.animated = animated
         super.init(frame: .zero)
         self.layer.borderColor = UIColor.darkGrayColor().CGColor
         self.layer.borderWidth = 2.0
@@ -203,12 +205,6 @@ public class SpiderChart: UIView {
     func createPieSliceWith(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, index: Int) -> CAShapeLayer {
         let fromPath = bezierPathWithCenter(chartCenter, radius: 0, startAngle: startAngle, endAngle: endAngle)
         let toPath = bezierPathWithCenter(chartCenter, radius: radius, startAngle: startAngle, endAngle: endAngle)
-        let anim = CABasicAnimation(keyPath: "path")
-        anim.duration = 1.0
-        anim.fromValue = fromPath
-        anim.toValue = toPath
-        anim.removedOnCompletion = false
-        anim.fillMode = kCAFillModeForwards
         let slice = CAShapeLayer()
         slice.fillColor = self.UIColorFromRGB(hexColorValues[index]).CGColor
         slice.shadowOffset = CGSizeMake(5, 5)
@@ -218,7 +214,15 @@ public class SpiderChart: UIView {
         slice.strokeColor = UIColor.lightGrayColor().CGColor
         slice.lineWidth = 1.0
         slice.path = toPath
-        slice.addAnimation(anim, forKey: nil)
+        if self.animated == true {
+            let anim = CABasicAnimation(keyPath: "path")
+            anim.duration = 1.0
+            anim.fromValue = fromPath
+            anim.toValue = toPath
+            anim.removedOnCompletion = false
+            anim.fillMode = kCAFillModeForwards
+            slice.addAnimation(anim, forKey: nil)
+        }
         return slice
     }
     

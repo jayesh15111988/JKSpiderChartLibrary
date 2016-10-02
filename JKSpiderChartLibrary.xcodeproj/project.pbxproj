@@ -10,7 +10,6 @@
 		383DCA491D7FA71200140999 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DCA481D7FA71200140999 /* AppDelegate.swift */; };
 		383DCA4B1D7FA71200140999 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DCA4A1D7FA71200140999 /* ViewController.swift */; };
 		383DCA4E1D7FA71200140999 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383DCA4C1D7FA71200140999 /* Main.storyboard */; };
-		383DCA511D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 383DCA4F1D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodeld */; };
 		383DCA531D7FA71200140999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383DCA521D7FA71200140999 /* Assets.xcassets */; };
 		383DCA561D7FA71200140999 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383DCA541D7FA71200140999 /* LaunchScreen.storyboard */; };
 		383DCA611D7FA71200140999 /* JKSpiderChartLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DCA601D7FA71200140999 /* JKSpiderChartLibraryTests.swift */; };
@@ -34,7 +33,6 @@
 		383DCA481D7FA71200140999 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383DCA4A1D7FA71200140999 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		383DCA4D1D7FA71200140999 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		383DCA501D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JKSpiderChartLibrary.xcdatamodel; sourceTree = "<group>"; };
 		383DCA521D7FA71200140999 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		383DCA551D7FA71200140999 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383DCA571D7FA71200140999 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,11 +85,11 @@
 		383DCA3C1D7FA71200140999 = {
 			isa = PBXGroup;
 			children = (
+				1D18AA8F7DB39484AD0A3629 /* Frameworks */,
 				383DCA471D7FA71200140999 /* JKSpiderChartLibrary */,
 				383DCA5F1D7FA71200140999 /* JKSpiderChartLibraryTests */,
-				383DCA461D7FA71200140999 /* Products */,
 				1ADA116C71B3BEE241BBEA0D /* Pods */,
-				1D18AA8F7DB39484AD0A3629 /* Frameworks */,
+				383DCA461D7FA71200140999 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,11 +108,10 @@
 				E386E8241DA0A73D0085634C /* Classes */,
 				E386E8231DA0A7390085634C /* Demo */,
 				383DCA481D7FA71200140999 /* AppDelegate.swift */,
-				383DCA4C1D7FA71200140999 /* Main.storyboard */,
 				383DCA521D7FA71200140999 /* Assets.xcassets */,
-				383DCA541D7FA71200140999 /* LaunchScreen.storyboard */,
 				383DCA571D7FA71200140999 /* Info.plist */,
-				383DCA4F1D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodeld */,
+				383DCA541D7FA71200140999 /* LaunchScreen.storyboard */,
+				383DCA4C1D7FA71200140999 /* Main.storyboard */,
 			);
 			path = JKSpiderChartLibrary;
 			sourceTree = "<group>";
@@ -122,8 +119,8 @@
 		383DCA5F1D7FA71200140999 /* JKSpiderChartLibraryTests */ = {
 			isa = PBXGroup;
 			children = (
-				383DCA601D7FA71200140999 /* JKSpiderChartLibraryTests.swift */,
 				383DCA621D7FA71200140999 /* Info.plist */,
+				383DCA601D7FA71200140999 /* JKSpiderChartLibraryTests.swift */,
 			);
 			path = JKSpiderChartLibraryTests;
 			sourceTree = "<group>";
@@ -133,7 +130,7 @@
 			children = (
 				383DCA4A1D7FA71200140999 /* ViewController.swift */,
 			);
-			name = Demo;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		E386E8241DA0A73D0085634C /* Classes */ = {
@@ -142,7 +139,7 @@
 				E386E8251DA0B4860085634C /* SpiderChart.swift */,
 				E386E8271DA1A0E30085634C /* SpiderChartProtocol.swift */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +299,6 @@
 				383DCA4B1D7FA71200140999 /* ViewController.swift in Sources */,
 				E386E8261DA0B4860085634C /* SpiderChart.swift in Sources */,
 				E386E8281DA1A0E30085634C /* SpiderChartProtocol.swift in Sources */,
-				383DCA511D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodeld in Sources */,
 				383DCA491D7FA71200140999 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +328,7 @@
 				383DCA4D1D7FA71200140999 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		383DCA541D7FA71200140999 /* LaunchScreen.storyboard */ = {
@@ -340,6 +337,7 @@
 				383DCA551D7FA71200140999 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -518,19 +516,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		383DCA4F1D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				383DCA501D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodel */,
-			);
-			currentVersion = 383DCA501D7FA71200140999 /* JKSpiderChartLibrary.xcdatamodel */;
-			path = JKSpiderChartLibrary.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 383DCA3D1D7FA71200140999 /* Project object */;
 }
