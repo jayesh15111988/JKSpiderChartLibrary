@@ -20,7 +20,7 @@ public class SpiderChart: UIView {
     var chartMaxRadius: CGFloat
     var graphPadding: CGFloat
     var animated: Bool
-    weak var chartDelegate: SpiderChartProtocol?
+    weak public var chartDelegate: SpiderChartProtocol?
 
     
     public init(firstOptions: [String], secondOptions: [String], labelTitles: [String], animated: Bool = false) {
