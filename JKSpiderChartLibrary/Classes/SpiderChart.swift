@@ -12,6 +12,7 @@ import BlocksKit
 public class SpiderChart: UIView {
     let hexColorValues: [UInt]
     var layersCollection: [CALayer]
+    var paths: [CGPath]
     let chartLabelTitles: [String]
     let firstOptions: [String]
     let secondOptions: [String]
@@ -29,6 +30,7 @@ public class SpiderChart: UIView {
         self.chartLabelTitles = labelTitles
         self.selectedLegendIndex = -1
         self.layersCollection = []
+        self.paths = []
         self.hexColorValues = [0x64DDBB, 0x8F6F40, 0xFD5B03, 0xD33257, 0x6C8784, 0x1DABB8, 0x60646D, 0x8870FF, 0xBB3658, 0x3D8EB9]
         self.chartCenter = CGPointZero
         self.chartMaxRadius = 0
@@ -102,6 +104,7 @@ public class SpiderChart: UIView {
         let endAngle = angleValue + updatedAngleValue
         let childLayer = createPieSliceWith(mappedRadiusToNewValue, startAngle: updatedAngleValue, endAngle: endAngle, index: index)
         self.layer.addSublayer(childLayer)
+        paths.append(childLayer.path!)
         layer.addSublayer(labelWith("R: \(firstOptions[index])\nA: \(secondOptions[index])", startAngle: updatedAngleValue, endAngle: endAngle, radius: mappedRadiusToNewValue))
         updatedAngleValue = updatedAngleValue + angleValue
         layersCollection.append(childLayer)
@@ -177,20 +180,7 @@ public class SpiderChart: UIView {
         legendParentView.addSubview(legendView)
         legendParentView.addSubview(legendLabel)
         legendParentView.bk_whenTapped({
-            for layer in self.layersCollection {
-                if (self.selectedLegendIndex == index) {
-                    layer.opacity = 1.0
-                } else {
-                    layer.opacity = (layer == self.layersCollection[index]) ? 1.0 : 0.4
-                }
-            }
-            
-            if (self.selectedLegendIndex == index) {
-                self.selectedLegendIndex = -1
-            } else {
-                self.selectedLegendIndex = index
-            }
-            self.chartDelegate?.mapLegendSelectedAt?(index)
+            self.layerSelectedAtIndex(index)
         })
         
         let views = ["legendView": legendView, "legendLabel": legendLabel]
@@ -202,9 +192,27 @@ public class SpiderChart: UIView {
                 return legendParentView
     }
 
+    func layerSelectedAtIndex(index: Int) {
+        for layer in self.layersCollection {
+            if (self.selectedLegendIndex == index) {
+                layer.opacity = 1.0
+            } else {
+                layer.opacity = (layer == self.layersCollection[index]) ? 1.0 : 0.4
+            }
+        }
+
+        if (self.selectedLegendIndex == index) {
+            self.selectedLegendIndex = -1
+        } else {
+            self.selectedLegendIndex = index
+        }
+        self.chartDelegate?.mapLegendSelectedAt?(index)
+    }
+
     func createPieSliceWith(radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, index: Int) -> CAShapeLayer {
         let fromPath = bezierPathWithCenter(chartCenter, radius: 0, startAngle: startAngle, endAngle: endAngle)
         let toPath = bezierPathWithCenter(chartCenter, radius: radius, startAngle: startAngle, endAngle: endAngle)
+
         let slice = CAShapeLayer()
         slice.fillColor = self.UIColorFromRGB(hexColorValues[index]).CGColor
         slice.shadowOffset = CGSizeMake(5, 5)
@@ -241,5 +249,22 @@ public class SpiderChart: UIView {
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(red: ((CGFloat)((rgbValue & 0xFF0000) >> 16))/255.0, green: ((CGFloat)((rgbValue & 0xFF00) >> 8))/255.0, blue: ((CGFloat)(rgbValue & 0xFF))/255.0, alpha: 1.0)
+    }
+
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            let touchLocation = touch.locationInView(self)
+            let sliceLayers = self.layersCollection
+            var transform = CGAffineTransformIdentity
+
+                for (index, _) in sliceLayers.enumerate() {
+                    let path = paths[index]
+                    if CGPathContainsPoint(path, &transform, touchLocation, false) {
+                        self.layerSelectedAtIndex(index)
+                        break
+                    }
+                }
+        }
+        super.touchesBegan(touches, withEvent:event)
     }
 }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "JKSpiderChartLibrary"
-  s.version          = "0.2"
+  s.version          = "0.3"
   s.summary          = "A chart library to draw graph in the form of spider chart"  
   s.homepage         = "https://github.com/jayesh15111988/JKSpiderChartLibrary"
   s.license          = 'MIT'

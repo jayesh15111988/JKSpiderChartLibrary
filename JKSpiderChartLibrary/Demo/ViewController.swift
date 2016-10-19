@@ -34,3 +34,30 @@ class ViewController: UIViewController, SpiderChartProtocol {
     }
 }
 
+class Sample {
+    var val1: String
+    var rank1: Int
+    
+    init() {
+        val1 = ""
+        rank1 = 0
+    }
+    
+    convenience init(animated: Bool) {
+        self.init()
+        val1 = "Animated"
+        rank1 = 100
+    }
+}
+
+extension UIImageView {
+    convenience init?(imageName: String, contentMode: UIViewContentMode) {
+        guard let image = UIImage(named: imageName) else {
+            return nil
+        }
+        self.init(image: image)
+        self.contentMode = contentMode
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+
